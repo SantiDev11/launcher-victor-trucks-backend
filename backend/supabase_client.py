@@ -1,0 +1,12 @@
+import os
+from supabase import create_client, Client
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SUPABASE_URL = os.getenv("SUPABASE_URL", "https://ohjsunypctzdgtenrmsi.supabase.co")
+SUPABASE_PUBLISHABLE_KEY = os.getenv("SUPABASE_PUBLISHABLE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oanN1bnlwY3R6ZGd0ZW5ybXNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0MzEzMzYsImV4cCI6MjEwMjAwNzMzNn0.fwslvbA1PaNoStWbaH-t1Fz4ucXLu-Ot2BJu9Kk3E9g")
+SUPABASE_SECRET_KEY = os.getenv("SUPABASE_SECRET_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oanN1bnlwY3R6ZGd0ZW5ybXNpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NjQzMTMzNiwiZXhwIjoyMTAyMDA3MzM2fQ.3iB1dJE0kKdNFpwwRfEQfKW44sRFDa9bJdrxWGIU4fs")
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
+supabase_admin: Client = create_client(SUPABASE_URL, SUPABASE_SECRET_KEY)

@@ -1,0 +1,15 @@
+ATS Graphics Mods Launcher - Licencia de Uso
+=============================================
+
+Este software se proporciona tal cual, sin garantías de ningún tipo.
+Los mods gráficos son propiedad de sus respectivos autores.
+Este launcher es una herramienta independiente y no está afiliado
+con SCS Software ni American Truck Simulator.
+
+Uso permitido:
+- Instalación y uso personal del launcher
+- Descarga e instalación de mods gráficos de código abierto
+
+Restricciones:
+- Prohibida la redistribución comercial sin autorización
+- Prohibido modificar el código del launcher para fines maliciosos

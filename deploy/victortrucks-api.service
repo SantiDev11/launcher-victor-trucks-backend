@@ -1,0 +1,20 @@
+[Unit]
+Description=GRÁFICOS VICTORTRUCKS - API Central
+After=network.target
+
+[Service]
+Type=simple
+User=victortrucks
+Group=victortrucks
+WorkingDirectory=/opt/victortrucks
+Environment="GRAFIOS_VICTORTRUCKS_HOST=127.0.0.1"
+Environment="GRAFIOS_VICTORTRUCKS_PORT=8000"
+Environment="GRAFIOS_VICTORTRUCKS_DATA_DIR=/opt/victortrucks/data"
+ExecStart=/opt/victortrucks/venv/bin/python -m uvicorn backend.server:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+﻿.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+storage/
+*.db
+*.sqlite
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+installer_build/
+start.ps1

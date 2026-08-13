@@ -1,0 +1,38 @@
+======================================================================
+  GRÁFICOS VICTORTRUCKS - BUILD PIPELINE v2.0
+======================================================================
+
+[SYSTEM] Python: 3.13.14
+[SYSTEM] Platform: Windows 11
+[SYSTEM] Architecture: AMD64
+
+[1/4] Instalando dependencias Python...
+>> C:\Users\PC\Downloads\nuevo\.venv\Scripts\python.exe -m pip install -q pyinstaller>=6.3.0
+>> C:\Users\PC\Downloads\nuevo\.venv\Scripts\python.exe -m pip install -q PySide6>=6.5.0
+>> C:\Users\PC\Downloads\nuevo\.venv\Scripts\python.exe -m pip install -q requests>=2.31.0
+>> C:\Users\PC\Downloads\nuevo\.venv\Scripts\python.exe -m pip install -q fastapi>=0.109.0
+>> C:\Users\PC\Downloads\nuevo\.venv\Scripts\python.exe -m pip install -q uvicorn>=0.27.0
+>> C:\Users\PC\Downloads\nuevo\.venv\Scripts\python.exe -m pip install -q pydantic>=2.0
+
+[2/4] Limpiando builds anteriores...
+
+[3/4] Compilando ejecutable con PyInstaller...
+>> C:\Users\PC\Downloads\nuevo\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean Graficos_VictorTrucks.spec
+
+[OK] Ejecutable generado: C:\Users\PC\Downloads\nuevo\dist\Launcher_Victor_Trucks.exe (46.7 MB)
+[INFO] UPX desactivado - reduce falsos positivos de antivirus
+[INFO] Metadatos de versión y manifest incluidos - mejora confianza de Windows
+
+[4/5] Verificando firma digital...
+[INFO] signtool.exe no encontrado. Windows SDK no está instalado.
+    Para firmar el ejecutable, instala Windows SDK y ejecuta:
+    python sign_exe.py --pfx tu_certificado.pfx --pass tu_password
+
+[INFO] Para generar también el instalador de Windows:
+   python build_exe.py --installer
+   (Requiere NSIS instalado)
+
+======================================================================
+  BUILD COMPLETADO
+  Ejecutable: dist/Launcher_Victor_Trucks.exe
+======================================================================

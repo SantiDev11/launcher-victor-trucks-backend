@@ -1,0 +1,6 @@
+# Deployment: Backend API Server for VPS
+# Requirements for the server only (no PySide6/PyInstaller needed)
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.0
+python-multipart>=0.0.6

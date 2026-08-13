@@ -1,0 +1,87 @@
+160 INFO: PyInstaller: 6.21.0, contrib hooks: 2026.6
+161 INFO: Python: 3.13.14
+193 INFO: Platform: Windows-11-10.0.26200-SP0
+194 INFO: Python environment: C:\Users\PC\Downloads\nuevo\.venv
+197 INFO: Removing temporary files and cleaning cache in C:\Users\PC\AppData\Local\pyinstaller
+199 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\PC\\Downloads\\nuevo',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\\python313.zip',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\\DLLs',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\\Lib',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0',
+ 'C:\\Users\\PC\\Downloads\\nuevo\\.venv',
+ 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages',
+ 'C:\\Users\\PC\\Downloads\\nuevo']
+542 INFO: Appending 'datas' from .spec
+543 INFO: checking Analysis
+543 INFO: Building Analysis because Analysis-00.toc is non existent
+543 INFO: Looking for Python shared library...
+543 INFO: Using Python shared library: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\python313.dll
+544 INFO: Running Analysis Analysis-00.toc
+544 INFO: Target bytecode optimization level: 0
+544 INFO: Initializing module dependency graph...
+545 INFO: Initializing module graph hook caches...
+560 INFO: Analyzing modules for base_library.zip ...
+1619 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2414 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2658 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+3716 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+4983 INFO: Caching module dependency graph...
+5017 INFO: Analyzing C:\Users\PC\Downloads\nuevo\client\main.py
+5034 INFO: Processing standard module hook 'hook-PySide6.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5261 INFO: Processing standard module hook 'hook-shiboken6.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5435 INFO: Processing standard module hook 'hook-PySide6.QtNetwork.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7608 INFO: Processing standard module hook 'hook-PySide6.QtCore.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10871 INFO: Processing standard module hook 'hook-PySide6.QtWidgets.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+14811 INFO: Processing standard module hook 'hook-PySide6.QtGui.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+37919 INFO: Processing standard module hook 'hook-urllib3.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+38084 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+38086 INFO: SetuptoolsInfo: initializing cached setuptools info...
+38679 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+38692 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+38957 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+39042 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+39302 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+39307 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+40224 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+40270 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+40605 INFO: Processing module hooks (post-graph stage)...
+40654 INFO: Performing binary vs. data reclassification (125 entries)
+40683 INFO: Looking for ctypes DLLs
+40692 INFO: Analyzing run-time hooks ...
+40694 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+40697 INFO: Including run-time hook 'pyi_rth_pyside6.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+40699 INFO: Processing pre-find-module-path hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+40701 INFO: Processing standard module hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+40703 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+40706 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+40714 INFO: Creating base_library.zip...
+40734 INFO: Looking for dynamic libraries
+41204 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\shiboken6']
+41205 INFO: Extra DLL search directories (PATH): ['C:\\Users\\PC\\Downloads\\nuevo\\.venv\\Lib\\site-packages\\PySide6']
+42215 INFO: Warnings written to C:\Users\PC\Downloads\nuevo\build\Graficos_VictorTrucks\warn-Graficos_VictorTrucks.txt
+42242 INFO: Graph cross-reference written to C:\Users\PC\Downloads\nuevo\build\Graficos_VictorTrucks\xref-Graficos_VictorTrucks.html
+42264 INFO: checking PYZ
+42264 INFO: Building PYZ because PYZ-00.toc is non existent
+42265 INFO: Building PYZ (ZlibArchive) C:\Users\PC\Downloads\nuevo\build\Graficos_VictorTrucks\PYZ-00.pyz
+42517 INFO: Building PYZ (ZlibArchive) C:\Users\PC\Downloads\nuevo\build\Graficos_VictorTrucks\PYZ-00.pyz completed successfully.
+42528 INFO: checking PKG
+42528 INFO: Building PKG because PKG-00.toc is non existent
+42528 INFO: Building PKG (CArchive) Launcher_Victor_Trucks.pkg
+52951 INFO: Building PKG (CArchive) Launcher_Victor_Trucks.pkg completed successfully.
+52955 INFO: Bootloader C:\Users\PC\Downloads\nuevo\.venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+52955 INFO: checking EXE
+52956 INFO: Building EXE because EXE-00.toc is non existent
+52956 INFO: Building EXE from EXE-00.toc
+52956 INFO: Copying bootloader EXE to C:\Users\PC\Downloads\nuevo\dist\Launcher_Victor_Trucks.exe
+53011 INFO: Copying icon to EXE
+53057 INFO: Copying 0 resources to EXE
+53057 INFO: Embedding manifest in EXE
+53102 INFO: Appending PKG archive to EXE
+53281 INFO: Fixing EXE headers
+53735 INFO: Building EXE from EXE-00.toc completed successfully.
+53739 INFO: Build complete! The results are available in: C:\Users\PC\Downloads\nuevo\dist
