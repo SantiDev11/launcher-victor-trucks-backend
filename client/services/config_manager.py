@@ -63,9 +63,7 @@ class ConfigManager:
                     self.config.update(loaded)
         except Exception:
             pass
-        saved_url = (self.config.get("api_url") or "").strip()
-        if not saved_url or not is_central_api_url(saved_url):
-            self.config["api_url"] = self.DEFAULT_CONFIG["api_url"]
+        pass
 
     def save(self):
         try:
@@ -93,10 +91,7 @@ class ConfigManager:
 
     @property
     def api_url(self):
-        val = (self.config.get("api_url") or "").strip()
-        if not val or not is_central_api_url(val):
-            return self.DEFAULT_CONFIG["api_url"]
-        return val
+        return "https://launcher-victor-trucks-backend.onrender.com"
 
     @api_url.setter
     def api_url(self, value):
