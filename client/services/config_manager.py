@@ -35,7 +35,7 @@ def is_central_api_url(value):
 class ConfigManager:
     DEFAULT_CONFIG = {
         "ats_mod_dir": None,
-        "api_url": os.environ.get("GRAFIOS_VICTORTRUCKS_SERVER_URL", "http://127.0.0.1:8000").strip(),
+        "api_url": "https://launcher-victor-trucks-backend.onrender.com",
         "username": None,
         "auth_token": None,
         "user_role": None,
@@ -151,3 +151,4 @@ class ConfigManager:
     def hide_mods(self, value):
         self.config["hide_mods"] = bool(value)
         self.save()
+
