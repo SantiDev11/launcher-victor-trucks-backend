@@ -725,7 +725,7 @@ class AdminUsersDialog(QDialog):
             normalized = {}
             for k, v in access_map.items():
                 try:
-                    normalized[int(k)] = bool(v)
+                    normalized[str(k)] = bool(v)
                 except (ValueError, TypeError):
                     normalized[k] = bool(v)
             self.access_map = normalized
@@ -744,7 +744,8 @@ class AdminUsersDialog(QDialog):
             return
 
         for mod in mods:
-            is_acquired = bool(self.access_map.get(int(mod.get('id')), False))
+            mod_id_key = str(mod.get('id', ''))
+            is_acquired = bool(self.access_map.get(mod_id_key, False))
             status = "ADQUIRIDO" if is_acquired else "NO ADQUIRIDO"
             status_icon = "✅" if is_acquired else "🔒"
             
