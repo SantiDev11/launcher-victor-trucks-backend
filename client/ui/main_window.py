@@ -732,9 +732,13 @@ class AdminUsersDialog(QDialog):
         else:
             self.access_map = {}
 
-        success, mods, _ = self.api_client.get_mods()
-        if not success:
-            mods = []
+        ok_admin, admin_mods = self.api_client.get_admin_mods() if hasattr(self.api_client, 'get_admin_mods') else (False, [])
+        if ok_admin:
+            mods = admin_mods
+        else:
+            success, mods, _ = self.api_client.get_mods()
+            if not success:
+                mods = []
         self.mod_list = mods
 
         if not mods:
