@@ -1240,8 +1240,8 @@ class MainWindow(QMainWindow):
             return False
 
         valid_session = self.api_client.fetch_me()
-        if valid_session is not True:
-            # If the token is invalid or the server rejected it, clear stale auth.
+        if valid_session is False:
+            # Only logout if server explicitly rejected the token (False), not on network error (None)
             self.api_client.logout()
             self.update_user_ui()
             self.catalog_view.load_mods()
