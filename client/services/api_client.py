@@ -135,7 +135,7 @@ class APIClient:
     # ------------------------------------------------------------------
     def register(self, username, password):
         if not self.health_check():
-            self.check_connection(timeout=3)
+            self.check_connection(timeout=15)
         url = f"{self.base_url}/api/auth/register"
         try:
             resp = self._session.post(url, json={"email": username, "password": password}, timeout=10)
@@ -152,7 +152,7 @@ class APIClient:
                 return True, data.get("message")
             return False, self._extract_error(resp)
         except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, requests.exceptions.SSLError) as e:
-            ok, _ = self.check_connection(timeout=3)
+            ok, _ = self.check_connection(timeout=15)
             if ok:
                 url = f"{self.base_url}/api/auth/register"
                 try:
@@ -175,7 +175,7 @@ class APIClient:
 
     def login(self, username, password):
         if not self.health_check():
-            self.check_connection(timeout=3)
+            self.check_connection(timeout=15)
         url = f"{self.base_url}/api/auth/login"
         try:
             resp = self._session.post(url, json={"email": username, "password": password}, timeout=10)
@@ -192,7 +192,7 @@ class APIClient:
                 return True, data.get("message")
             return False, self._extract_error(resp)
         except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, requests.exceptions.SSLError) as e:
-            ok, _ = self.check_connection(timeout=3)
+            ok, _ = self.check_connection(timeout=15)
             if ok:
                 url = f"{self.base_url}/api/auth/login"
                 try:
@@ -278,7 +278,7 @@ class APIClient:
             resp = self._session.get(
                 f"{self.base_url}/api/auth/me",
                 headers={"Authorization": f"Bearer {self.auth_token}"},
-                timeout=8
+                timeout=30
             )
             if resp.status_code == 200:
                 data = self._safe_json(resp)
@@ -450,7 +450,7 @@ class APIClient:
         """
         url = f"{self.base_url}/api/health"
         try:
-            resp = self._session.get(url, timeout=3)
+            resp = self._session.get(url, timeout=15)
             if resp.status_code != 200:
                 return False
             data = self._safe_json(resp)
