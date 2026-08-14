@@ -492,7 +492,10 @@ def list_mods(search: Optional[str] = None, current_user: dict = Depends(get_cur
             if term not in searchable:
                 continue
 
-        acquired = True if is_admin_user(current_user) else get_mod_access(current_user["id"], mod["id"])
+        if is_admin_user(current_user):
+            acquired = True
+        else:
+            acquired = get_mod_access(current_user["id"], mod["id"])
         result.append(get_mod_response(mod, acquired))
 
     return {"mods": result, "categories": CATEGORIES}
