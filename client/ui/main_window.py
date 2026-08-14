@@ -126,6 +126,10 @@ class UploadModDialog(QDialog):
         self.input_desc.setMaximumHeight(80)
         form.addRow("Descripción:", self.input_desc)
 
+        self.input_download_url = QLineEdit()
+        self.input_download_url.setPlaceholderText("https://drive.google.com/uc?export=download&id=...")
+        form.addRow("URL Descarga:", self.input_download_url)
+
         layout.addLayout(form)
 
         # Future mod creation hint for admins
@@ -173,13 +177,15 @@ class UploadModDialog(QDialog):
         if not self.input_author.text().strip():
             self.input_author.setText("VictorTrucks")
 
+        download_url = self.input_download_url.text().strip() if hasattr(self, "input_download_url") else ""
         success, message = self.api_client.create_future_mod(
             title=self.input_title.text().strip(),
             version=self.input_version.text().strip(),
             author=self.input_author.text().strip(),
             compatibility=self.input_compat.text().strip() or "1.50+",
             description=self.input_desc.toPlainText().strip() or "Mod futuro de Gráficos VictorTrucks.",
-            size_gb=0.0
+            size_gb=0.0,
+            download_url=download_url
         )
         if success:
             QMessageBox.information(self, "Mod Futuro Creado", message)

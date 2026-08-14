@@ -543,7 +543,7 @@ class APIClient:
         # No local fallback - require backend API for uploads
         return False, "No se pudo conectar con el servidor API para subir el mod."
 
-    def create_future_mod(self, title, version, author, compatibility, description, size_gb=0.0):
+    def create_future_mod(self, title, version, author, compatibility, description, size_gb=0.0, download_url=""):
         """
         Create a mod entry without a file (for future mods).
         Admin only - file can be added later.
@@ -558,7 +558,8 @@ class APIClient:
                     "author": author,
                     "compatibility": compatibility,
                     "description": description,
-                    "size_gb": size_gb
+                    "size_gb": size_gb,
+                    "download_url": download_url
                 },
                 headers=headers,
                 timeout=10,
