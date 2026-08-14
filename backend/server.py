@@ -171,7 +171,7 @@ def get_current_user(authorization: Optional[str] = Header(None)):
     token = authorization.split(" ", 1)[1].strip()
 
     try:
-        response = supabase.auth.get_user(token)
+        response = supabase_admin.auth.get_user(token)
         auth_user = response.user
 
         if not auth_user:
