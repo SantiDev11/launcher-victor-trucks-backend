@@ -469,7 +469,11 @@ def change_password(req: ChangePasswordRequest):
 # ---------------------------------------------------------------------------
 
 @app.get("/api/mods")
-def list_mods(search: Optional[str] = None, current_user: dict = Depends(get_current_user)):
+def list_mods(search: Optional[str] = None, authorization: Optional[str] = Header(None)):
+    try:
+        current_user = get_current_user(authorization)
+    except:
+        current_user = {"id": "guest", "role": "USER", "username": "guest"}
     response = (
         supabase_admin
         .table("mods")
