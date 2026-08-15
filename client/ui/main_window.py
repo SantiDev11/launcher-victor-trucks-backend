@@ -1323,12 +1323,18 @@ class MainWindow(QMainWindow):
             path = raw_url if raw_url.startswith("/") else f"/{raw_url}"
             download_url = f"{base}{path}"
 
-        if "drive.google.com/file/d/" in download_url:
+        if "drive.google.com" in download_url or "drive.usercontent.google.com" in download_url:
             import re
+            file_id = None
             match = re.search(r'/file/d/([^/]+)', download_url)
             if match:
                 file_id = match.group(1)
-                download_url = f"https://drive.google.com/uc?export=download&confirm=t&id={file_id}"
+            else:
+                match = re.search(r'[?&]id=([^&]+)', download_url)
+                if match:
+                    file_id = match.group(1)
+            if file_id:
+                download_url = f"https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&authuser=0"
         if "drive.google.com" in download_url or "docs.google.com" in download_url:
             save_dir = self.config.ats_mod_dir or self.download_dir
         else:
