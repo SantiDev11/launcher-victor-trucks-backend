@@ -155,7 +155,10 @@ class DownloadWorker(QThread):
                                 speed_mbps = (speed_window_bytes / (1024 * 1024)) / elapsed_since_window
                             else:
                                 speed_mbps = 0.0
-                            pct = (downloaded_bytes / total_bytes * 100) if total_bytes > 0 else 0
+                            if total_bytes > 0:
+                                pct = (downloaded_bytes / total_bytes * 100)
+                            else:
+                                pct = min((downloaded_bytes / (1024*1024*1024)) * 10, 99)
                             self.progress_signal.emit(self.mod_id, downloaded_bytes, total_bytes, pct, speed_mbps)
                             last_progress_time = now
 
