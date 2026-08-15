@@ -96,7 +96,7 @@ class DownloadWorker(QThread):
             # If CDN/external storage rejects custom Bearer auth header, retry without Authorization
             if resp.status_code in (400, 403) and self.auth_token and "Authorization" in headers:
                 cdn_headers = {k: v for k, v in headers.items() if k != "Authorization"}
-                resp = requests.get(self.download_url, headers=cdn_headers, stream=True, timeout=60)
+                resp = requests.get(download_url, headers=cdn_headers, stream=True, timeout=60)
 
             # If server doesn't support range, restart from beginning
             if resp.status_code == 416:
@@ -104,12 +104,12 @@ class DownloadWorker(QThread):
                 self.delete_temp_file()
                 downloaded_bytes = 0
                 no_range_headers = {k: v for k, v in headers.items() if k != "Range"}
-                resp = requests.get(self.download_url, headers=no_range_headers, stream=True, timeout=60)
+                resp = requests.get(download_url, headers=no_range_headers, stream=True, timeout=60)
             elif resp.status_code not in (200, 206):
                 # Other status - try without Range header
                 downloaded_bytes = 0
                 no_range_headers = {k: v for k, v in headers.items() if k != "Range"}
-                resp = requests.get(self.download_url, headers=no_range_headers, stream=True, timeout=60)
+                resp = requests.get(download_url, headers=no_range_headers, stream=True, timeout=60)
 
             total_bytes = downloaded_bytes
             if "Content-Length" in resp.headers:
