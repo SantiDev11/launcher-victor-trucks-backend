@@ -472,8 +472,9 @@ def change_password(req: ChangePasswordRequest):
 def list_mods(search: Optional[str] = None, authorization: Optional[str] = Header(None)):
     try:
         current_user = get_current_user(authorization)
-    except:
+    except Exception as auth_err:
         current_user = {"id": "guest", "role": "USER", "username": "guest"}
+        print(f"AUTH ERROR: {auth_err}")
     response = (
         supabase_admin
         .table("mods")
