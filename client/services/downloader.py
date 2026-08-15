@@ -82,16 +82,19 @@ class DownloadWorker(QThread):
             if file_id_match:
                 file_id = file_id_match.group(1)
                 download_url = f'https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&authuser=0'
+        drive_session = requests.Session()
+        if 'drive.usercontent.google.com' in download_url or 'drive.google.com' in download_url:
+            drive_session.get(f'https://drive.google.com/file/d/{file_id}/view', timeout=10)
         try:
-            resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
-            # Handle Drive virus scan warning page
-            if 'text/html' in resp.headers.get('Content-Type', '') and 'drive.google.com' in download_url:
+            resp = drive_session.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
+            if 'text/html' in resp.headers.get('Content-Type', ''):
                 import re
-                match = re.search(r'confirm=([0-9A-Za-z_\-]+)', resp.text)
-                if match:
-                    confirm = match.group(1)
-                    download_url = re.sub(r'confirm=[^&]*', f'confirm={confirm}', download_url)
-                    resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
+                match = re.search(r'confirm=t', resp.text)
+                uuid_match = re.search(r'uuid=([^&"]+)', resp.text)
+                if uuid_match:
+                    uuid = uuid_match.group(1)
+                    download_url = f'https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&uuid={uuid}'
+                    resp = drive_session.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
 
             # If CDN/external storage rejects custom Bearer auth header, retry without Authorization
             if resp.status_code in (400, 403) and self.auth_token and "Authorization" in headers:
