@@ -82,16 +82,8 @@ class DownloadWorker(QThread):
             if file_id_match:
                 file_id = file_id_match.group(1)
                 download_url = f'https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&authuser=0'
-        drive_session = requests.Session()
-        if 'drive.usercontent.google.com' in download_url or 'drive.google.com' in download_url:
-            drive_session.get(f'https://drive.google.com/file/d/{file_id}/view', timeout=10)
         try:
-            resp = drive_session.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
-            if 'text/html' in resp.headers.get('Content-Type', ''):
-                import re
-                match = re.search(r'confirm=t', resp.text)
-                uuid_match = re.search(r'uuid=([^&"]+)', resp.text)
-                if uuid_match:
+            resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)tch:
                     uuid = uuid_match.group(1)
                     download_url = f'https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&uuid={uuid}'
                     resp = drive_session.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
