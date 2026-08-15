@@ -51,10 +51,11 @@ class ServerUpdateWorker(QThread):
         self.api_client = api_client
 
     def run(self):
-        # Retry connection if embedded backend is still warming up
-        if not self.api_client.health_check():
-            self.api_client.wait_for_server(max_wait=5, interval=0.3)
         success, mods, categories = self.api_client.get_mods()
+        if not success:
+            import time
+            time.sleep(2)
+            success, mods, categories = self.api_client.get_mods()
         self.finished.emit(success, mods, categories)
 
 
@@ -198,8 +199,12 @@ class UploadModDialog(QDialog):
             QMessageBox.critical(self, "Error", message)
 
     def do_upload(self):
-        if not self.filepath:
-            QMessageBox.warning(self, "Error", "Selecciona un archivo primero.")
+        download_url = self.input_download_url.text().strip() if hasattr(self, "input_download_url") else ""
+        if not self.filepath and not download_url:
+            QMessageBox.warning(self, "Error", "Selecciona un archivo o ingresa una URL de descarga.")
+            return
+        if not self.filepath and download_url:
+            self.create_future_mod()
             return
         if not self.input_title.text().strip():
             QMessageBox.warning(self, "Error", "El título es obligatorio.")

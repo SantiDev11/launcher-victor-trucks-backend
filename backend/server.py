@@ -42,10 +42,10 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 STORAGE_DIR = os.path.join(BASE_DIR, "storage")
 os.makedirs(STORAGE_DIR, exist_ok=True)
 
-CATEGORIES = ["Gráficos generales"]
+CATEGORIES = ["Mods Generales Victor Trucks"]
 
 CATEGORY_ICONS = {
-    "Gráficos generales": "🎨",
+    "Mods Generales Victor Trucks": "🎨",
 }
 
 
@@ -139,8 +139,8 @@ def get_mod_response(mod: dict, is_acquired: bool = False):
         "id": mod_id,
         "title": title,
         "name": title,
-        "category": "Gráficos generales",
-        "category_icon": CATEGORY_ICONS["Gráficos generales"],
+        "category": "Mods Generales Victor Trucks",
+        "category_icon": CATEGORY_ICONS["Mods Generales Victor Trucks"],
         "version": mod.get("version") or "",
         "author": mod.get("author") or "",
         "size_gb": mod.get("size_gb") or 0,
