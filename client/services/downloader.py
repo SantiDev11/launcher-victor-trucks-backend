@@ -74,9 +74,14 @@ class DownloadWorker(QThread):
 
         # Handle Google Drive confirmation page for large files
         download_url = self.download_url
-        if 'drive.google.com' in download_url:
-            if 'confirm=' not in download_url:
-                download_url = download_url + '&confirm=t' if '?' in download_url else download_url + '?confirm=t'
+        if 'drive.google.com' in download_url or 'drive.usercontent.google.com' in download_url:
+            import re
+            file_id_match = re.search(r'[?&]id=([^&]+)', download_url)
+            if not file_id_match:
+                file_id_match = re.search(r'/file/d/([^/]+)', download_url)
+            if file_id_match:
+                file_id = file_id_match.group(1)
+                download_url = f'https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&authuser=0'
         try:
             resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
             # Handle Drive virus scan warning page
