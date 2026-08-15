@@ -83,10 +83,7 @@ class DownloadWorker(QThread):
                 file_id = file_id_match.group(1)
                 download_url = f'https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&authuser=0'
         try:
-            resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)tch:
-                    uuid = uuid_match.group(1)
-                    download_url = f'https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&uuid={uuid}'
-                    resp = drive_session.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
+            resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
 
             # If CDN/external storage rejects custom Bearer auth header, retry without Authorization
             if resp.status_code in (400, 403) and self.auth_token and "Authorization" in headers:
