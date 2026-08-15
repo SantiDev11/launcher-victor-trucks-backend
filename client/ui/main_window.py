@@ -1323,13 +1323,17 @@ class MainWindow(QMainWindow):
             path = raw_url if raw_url.startswith("/") else f"/{raw_url}"
             download_url = f"{base}{path}"
 
-        os.makedirs(self.download_dir, exist_ok=True)
+        if "drive.google.com" in download_url or "docs.google.com" in download_url:
+            save_dir = self.config.ats_mod_dir or self.download_dir
+        else:
+            save_dir = self.download_dir
+        os.makedirs(save_dir, exist_ok=True)
 
         # Create DownloadWorker with resume support
         worker = DownloadWorker(
             mod_id=mod_id,
             download_url=download_url,
-            save_directory=self.download_dir,
+            save_directory=save_dir,
             expected_sha256=mod_data.get('sha256', ''),
             filename=mod_data.get('filename', f"mod_{mod_id}.scs"),
             total_size_bytes=mod_data.get('size_bytes', 0),
