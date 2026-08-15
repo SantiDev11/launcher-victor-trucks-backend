@@ -134,6 +134,8 @@ class APIClient:
     # Authentication
     # ------------------------------------------------------------------
     def register(self, username, password):
+        if '@' not in username:
+            username = username.strip().lower() + '@gmail.com'
         if not self.health_check():
             self.check_connection(timeout=15)
         url = f"{self.base_url}/api/auth/register"
@@ -174,6 +176,8 @@ class APIClient:
             return False, f"Error inesperado: {str(e)}"
 
     def login(self, username, password):
+        if '@' not in username:
+            username = username.strip().lower() + '@gmail.com'
         if not self.health_check():
             self.check_connection(timeout=15)
         url = f"{self.base_url}/api/auth/login"
