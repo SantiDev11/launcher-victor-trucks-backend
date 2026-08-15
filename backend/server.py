@@ -99,18 +99,21 @@ def get_mod_by_id(mod_id: str):
 
 
 def get_mod_access(user_id: str, mod_id: str) -> bool:
-    response = (
-        supabase_admin
-        .table("mod_access")
-        .select("acquired")
-        .eq("user_id", str(user_id))
-        .eq("mod_id", str(mod_id))
-        .maybe_single()
-        .execute()
-    )
-    if not response.data:
+    try:
+        response = (
+            supabase_admin
+            .table("mod_access")
+            .select("acquired")
+            .eq("user_id", str(user_id))
+            .eq("mod_id", str(mod_id))
+            .maybe_single()
+            .execute()
+        )
+        if response is None or not response.data:
+            return False
+        return bool(response.data.get("acquired", False))
+    except Exception:
         return False
-    return bool(response.data.get("acquired", False))
 
 
 def get_user_profile(user_id: str):
