@@ -712,7 +712,7 @@ def set_user_access(user_id: str, req: AdminUserAccessRequest, _admin: dict = De
         "user_id": user_id,
         "mod_id": req.mod_id,
         "acquired": bool(req.is_granted),
-        "activated_at": "now()" if req.is_granted else None,
+        "approved_at": "now()" if req.is_granted else None,
     }
 
     existing_data = existing.data if existing is not None else None
