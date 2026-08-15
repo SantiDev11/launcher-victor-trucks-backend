@@ -29,7 +29,7 @@ from client.ui.responsive import (
 
 CATEGORY_PILLS = [
     ("🌐 Todos", "Todos"),
-    ("🎨 Gráficos generales", "Gráficos generales"),
+    ("🎨 Mods Generales Victor Trucks", "Mods Generales Victor Trucks"),
 ]
 
 # Cache to avoid downloading the same thumbnail multiple times
@@ -181,14 +181,14 @@ class CatalogView(QWidget):
         header = QHBoxLayout()
 
         title_box = QVBoxLayout()
-        main_title = QLabel("🚛 GRÁFICOS GENERALES")
+        main_title = QLabel("🚛 MODS GENERALES VICTOR TRUCKS")
         main_title.setStyleSheet(
             f"font-size: 24px; font-weight: 900; color: {COLOR_TEXT_PRIMARY}; letter-spacing: 1px;"
         )
         title_box.addWidget(main_title)
 
         subtitle = QLabel(
-            "Mods gráficos para American Truck Simulator — texturas 4K, iluminación, clima y vegetación"
+            "Mods exclusivos para American Truck Simulator de Victor Trucks"
         )
         subtitle.setStyleSheet(f"font-size: 13px; color: {COLOR_TEXT_SECONDARY};")
         title_box.addWidget(subtitle)

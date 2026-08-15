@@ -72,8 +72,21 @@ class DownloadWorker(QThread):
         if downloaded_bytes > 0:
             headers["Range"] = f"bytes={downloaded_bytes}-"
 
+        # Handle Google Drive confirmation page for large files
+        download_url = self.download_url
+        if 'drive.google.com' in download_url:
+            if 'confirm=' not in download_url:
+                download_url = download_url + '&confirm=t' if '?' in download_url else download_url + '?confirm=t'
         try:
-            resp = requests.get(self.download_url, headers=headers, stream=True, timeout=60)
+            resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
+            # Handle Drive virus scan warning page
+            if 'text/html' in resp.headers.get('Content-Type', '') and 'drive.google.com' in download_url:
+                import re
+                match = re.search(r'confirm=([0-9A-Za-z_\-]+)', resp.text)
+                if match:
+                    confirm = match.group(1)
+                    download_url = re.sub(r'confirm=[^&]*', f'confirm={confirm}', download_url)
+                    resp = requests.get(download_url, headers=headers, stream=True, timeout=60, allow_redirects=True)
 
             # If CDN/external storage rejects custom Bearer auth header, retry without Authorization
             if resp.status_code in (400, 403) and self.auth_token and "Authorization" in headers:
