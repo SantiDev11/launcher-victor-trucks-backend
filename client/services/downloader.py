@@ -183,6 +183,12 @@ class DownloadWorker(QThread):
             if os.path.exists(self.target_path):
                 os.remove(self.target_path)
             os.rename(self.temp_path, self.target_path)
+            # Ocultar archivo en Windows
+            try:
+                import subprocess
+                subprocess.run(["attrib", "+h", self.target_path], check=False)
+            except Exception:
+                pass
 
             # SHA-256 Checksum Verification
             verified = self.verify_sha256(self.target_path, self.expected_sha256)
