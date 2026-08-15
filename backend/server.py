@@ -695,15 +695,18 @@ def set_user_access(user_id: str, req: AdminUserAccessRequest, _admin: dict = De
     if not mod:
         raise HTTPException(status_code=404, detail="Mod no encontrado")
 
-    existing = (
-        supabase_admin
-        .table("mod_access")
-        .select("id")
-        .eq("user_id", user_id)
-        .eq("mod_id", req.mod_id)
-        .maybe_single()
-        .execute()
-    )
+    try:
+        existing = (
+            supabase_admin
+            .table("mod_access")
+            .select("id")
+            .eq("user_id", user_id)
+            .eq("mod_id", req.mod_id)
+            .maybe_single()
+            .execute()
+        )
+    except Exception:
+        existing = None
 
     payload = {
         "user_id": user_id,
@@ -712,8 +715,9 @@ def set_user_access(user_id: str, req: AdminUserAccessRequest, _admin: dict = De
         "activated_at": "now()" if req.is_granted else None,
     }
 
-    if existing.data:
-        supabase_admin.table("mod_access").update(payload).eq("id", existing.data["id"]).execute()
+    existing_data = existing.data if existing is not None else None
+    if existing_data:
+        supabase_admin.table("mod_access").update(payload).eq("id", existing_data["id"]).execute()
     else:
         supabase_admin.table("mod_access").insert(payload).execute()
 
