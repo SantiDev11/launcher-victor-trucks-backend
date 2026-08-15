@@ -1324,8 +1324,16 @@ class MainWindow(QMainWindow):
             download_url = f"{base}{path}"
 
         if "drive.google.com" in download_url or "drive.usercontent.google.com" in download_url:
-            import webbrowser
-            webbrowser.open(download_url)
+            import re, webbrowser
+            file_id = None
+            m = re.search(r'[?&]id=([^&]+)', download_url)
+            if m: file_id = m.group(1)
+            m2 = re.search(r'/file/d/([^/]+)', download_url)
+            if m2: file_id = m2.group(1)
+            if file_id:
+                webbrowser.open(f"https://drive.google.com/file/d/{file_id}/view")
+            else:
+                webbrowser.open(download_url)
             return
         if "drive.google.com" in download_url or "docs.google.com" in download_url:
             save_dir = self.config.ats_mod_dir or self.download_dir
