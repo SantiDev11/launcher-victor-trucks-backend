@@ -1315,7 +1315,7 @@ class MainWindow(QMainWindow):
         if mod_id in self.active_workers:
             return
 
-        raw_url = mod_data.get('cdn_url') or mod_data.get('download_url') or f"/api/mods/{mod_id}/download"
+        raw_url = mod_data.get('download_url') or mod_data.get('cdn_url') or f"/api/mods/{mod_id}/download"
         if raw_url.startswith("http://") or raw_url.startswith("https://"):
             download_url = raw_url
         else:
@@ -1583,4 +1583,5 @@ class MainWindow(QMainWindow):
         if hasattr(self, 'catalog_view'):
             self.catalog_view.apply_responsive_layout()
             self.catalog_view.render_grid()
+
 
