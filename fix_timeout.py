@@ -1,0 +1,5 @@
+﻿content = open('client/services/api_client.py', 'r', encoding='utf-8').read()
+content = content.replace('timeout=8', 'timeout=30')
+content = content.replace('timeout=3)', 'timeout=15)')
+open('client/services/api_client.py', 'w', encoding='utf-8').write(content)
+print('ACTUALIZADO')

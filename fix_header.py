@@ -1,0 +1,7 @@
+﻿content = open('client/ui/views/catalog_view.py', 'r', encoding='utf-8').read()
+content = content.replace('🚛 GRÁFICOS GENERALES', '🚛 MODS GENERALES VICTOR TRUCKS')
+content = content.replace('\U0001f69b GR\u00c1FICOS GENERALES', '\U0001f69b MODS GENERALES VICTOR TRUCKS')
+content = content.replace('Mods gráficos para American Truck Simulator — texturas 4K, iluminación, clima y vegetación', 'Mods exclusivos para American Truck Simulator de Victor Trucks')
+content = content.replace('Mods gr\u00e1ficos para American Truck Simulator \u2014 texturas 4K, iluminaci\u00f3n, clima y vegetaci\u00f3n', 'Mods exclusivos para American Truck Simulator de Victor Trucks')
+open('client/ui/views/catalog_view.py', 'w', encoding='utf-8').write(content)
+print('ACTUALIZADO')

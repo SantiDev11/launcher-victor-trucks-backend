@@ -1,4 +1,4 @@
-; GRÁFICOS VICTORTRUCKS - Windows Installer Script
+﻿; GRÃFICOS VICTORTRUCKS - Windows Installer Script
 ; Build with NSIS (Nullsoft Scriptable Install System)
 
 !include "MUI2.nsh"
@@ -7,7 +7,7 @@
 ;--------------------------------
 ; Installer Attributes
 ;--------------------------------
-Name "GRÁFICOS VICTORTRUCKS"
+Name "GRÃFICOS VICTORTRUCKS"
 OutFile "dist\Graficos_VictorTrucks_Setup.exe"
 InstallDir "$LOCALAPPDATA\GraficosVictorTrucks"
 ; Use asInvoker instead of admin - reduces SmartScreen/AV alerts
@@ -17,15 +17,15 @@ RequestExecutionLevel user
 ; Version Information
 ;--------------------------------
 VIProductVersion "2.0.0.0"
-VIAddVersionKey "ProductName" "GRÁFICOS VICTORTRUCKS"
+VIAddVersionKey "ProductName" "GRÃFICOS VICTORTRUCKS"
 VIAddVersionKey "ProductVersion" "2.0.0"
-VIAddVersionKey "FileDescription" "Launcher de Mods Gráficos para American Truck Simulator"
+VIAddVersionKey "FileDescription" "Launcher de Mods GrÃ¡ficos para American Truck Simulator"
 VIAddVersionKey "FileVersion" "2.0.0.0"
 VIAddVersionKey "CompanyName" "VictorTrucks"
-VIAddVersionKey "LegalCopyright" "© 2026 VictorTrucks"
+VIAddVersionKey "LegalCopyright" "Â© 2026 VictorTrucks"
 VIAddVersionKey "OriginalFilename" "Graficos_VictorTrucks_Setup.exe"
 VIAddVersionKey "InternalName" "Graficos_VictorTrucks_Setup"
-VIAddVersionKey "Comments" "Instalador oficial de GRÁFICOS VICTORTRUCKS"
+VIAddVersionKey "Comments" "Instalador oficial de GRÃFICOS VICTORTRUCKS"
 VIAddVersionKey "LegalTrademarks" "VictorTrucks"
 VIAddVersionKey "PrivateBuild" "2.0.0"
 VIAddVersionKey "SpecialBuild" "Release"
@@ -64,22 +64,22 @@ Section "MainSection" SEC01
     SetOutPath "$INSTDIR"
     
     ; Copy launcher executable
-    File "dist\Graficos_VictorTrucks.exe"
+    File "dist\Launcher_Victor_Trucks.exe"
     
     ; Create Start Menu shortcut
-    CreateDirectory "$SMPROGRAMS\GRÁFICOS VICTORTRUCKS"
-    CreateShortcut "$SMPROGRAMS\GRÁFICOS VICTORTRUCKS\GRÁFICOS VICTORTRUCKS.lnk" "$INSTDIR\Graficos_VictorTrucks.exe"
-    CreateShortcut "$DESKTOP\GRÁFICOS VICTORTRUCKS.lnk" "$INSTDIR\Graficos_VictorTrucks.exe"
+    CreateDirectory "$SMPROGRAMS\GRÃFICOS VICTORTRUCKS"
+    CreateShortcut "$SMPROGRAMS\GRÃFICOS VICTORTRUCKS\GRÃFICOS VICTORTRUCKS.lnk" "$INSTDIR\Launcher_Victor_Trucks.exe"
+    CreateShortcut "$DESKTOP\GRÃFICOS VICTORTRUCKS.lnk" "$INSTDIR\Launcher_Victor_Trucks.exe"
     
     ; Uninstaller
     WriteUninstaller "$INSTDIR\Uninstall.exe"
     
     ; Registry uninstall entry (HKCU since we run as user)
-    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "DisplayName" "GRÁFICOS VICTORTRUCKS"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "DisplayName" "GRÃFICOS VICTORTRUCKS"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "DisplayVersion" "2.0.0"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "Publisher" "VictorTrucks"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "UninstallString" "$INSTDIR\Uninstall.exe"
-    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "DisplayIcon" "$INSTDIR\Graficos_VictorTrucks.exe"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "DisplayIcon" "$INSTDIR\Launcher_Victor_Trucks.exe"
     WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "NoModify" 1
     WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "NoRepair" 1
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks" "InstallLocation" "$INSTDIR"
@@ -92,15 +92,15 @@ SectionEnd
 ;--------------------------------
 Section "Uninstall"
     ; Remove shortcuts
-    Delete "$SMPROGRAMS\GRÁFICOS VICTORTRUCKS\GRÁFICOS VICTORTRUCKS.lnk"
-    RMDir "$SMPROGRAMS\GRÁFICOS VICTORTRUCKS"
-    Delete "$DESKTOP\GRÁFICOS VICTORTRUCKS.lnk"
+    Delete "$SMPROGRAMS\GRÃFICOS VICTORTRUCKS\GRÃFICOS VICTORTRUCKS.lnk"
+    RMDir "$SMPROGRAMS\GRÃFICOS VICTORTRUCKS"
+    Delete "$DESKTOP\GRÃFICOS VICTORTRUCKS.lnk"
     
     ; Remove registry entries
     DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\GraficosVictorTrucks"
     
     ; Remove installation files
-    Delete "$INSTDIR\Graficos_VictorTrucks.exe"
+    Delete "$INSTDIR\Launcher_Victor_Trucks.exe"
     Delete "$INSTDIR\Uninstall.exe"
     RMDir "$INSTDIR"
 SectionEnd
