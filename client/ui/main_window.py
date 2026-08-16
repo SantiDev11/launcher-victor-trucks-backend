@@ -1,5 +1,5 @@
-"""
-GRÁFICOS VICTORTRUCKS - Main Window
+﻿"""
+GRÃFICOS VICTORTRUCKS - Main Window
 Single-section professional launcher dedicated exclusively to graphics mods.
 Cyber Truck + Glassmorphism Premium Edition.
 """
@@ -66,7 +66,7 @@ class UploadModDialog(QDialog):
         super().__init__(parent)
         self.api_client = api_client
         self.filepath = None
-        self.setWindowTitle("📤 Subir Mod al Catálogo")
+        self.setWindowTitle("ðŸ“¤ Subir Mod al CatÃ¡logo")
         self.resize(520, 480)
         self.setMinimumSize(520, 400)
         self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
@@ -76,18 +76,18 @@ class UploadModDialog(QDialog):
         layout.setContentsMargins(24, 24, 24, 24)
         layout.setSpacing(16)
 
-        title = QLabel("📤 Subir Mod desde tu PC")
+        title = QLabel("ðŸ“¤ Subir Mod desde tu PC")
         title.setStyleSheet(f"font-size: 18px; font-weight: 900; color: {COLOR_TEXT_PRIMARY};")
         layout.addWidget(title)
 
-        desc = QLabel("Selecciona un archivo .scs o .zip de tu computadora para añadirlo al catálogo.")
+        desc = QLabel("Selecciona un archivo .scs o .zip de tu computadora para aÃ±adirlo al catÃ¡logo.")
         desc.setStyleSheet(f"font-size: 12px; color: {COLOR_TEXT_SECONDARY};")
         desc.setWordWrap(True)
         layout.addWidget(desc)
 
         # File selector
         file_row = QHBoxLayout()
-        self.lbl_file = QLabel("Ningún archivo seleccionado")
+        self.lbl_file = QLabel("NingÃºn archivo seleccionado")
         self.lbl_file.setStyleSheet(
             f"background: {GLASS_BG}; color: {COLOR_TEXT_SECONDARY};"
             f"border: 1px solid {GLASS_BORDER}; border-radius: 10px;"
@@ -107,12 +107,12 @@ class UploadModDialog(QDialog):
         form.setSpacing(10)
 
         self.input_title = QLineEdit()
-        self.input_title.setPlaceholderText("Ej: Mi Mod Gráfico Personalizado")
-        form.addRow("Título:", self.input_title)
+        self.input_title.setPlaceholderText("Ej: Mi Mod GrÃ¡fico Personalizado")
+        form.addRow("TÃ­tulo:", self.input_title)
 
         self.input_version = QLineEdit()
         self.input_version.setPlaceholderText("Ej: 1.0.0")
-        form.addRow("Versión:", self.input_version)
+        form.addRow("VersiÃ³n:", self.input_version)
 
         self.input_author = QLineEdit()
         self.input_author.setPlaceholderText("Tu nombre")
@@ -123,9 +123,9 @@ class UploadModDialog(QDialog):
         form.addRow("Compatibilidad:", self.input_compat)
 
         self.input_desc = QTextEdit()
-        self.input_desc.setPlaceholderText("Descripción del mod gráfico...")
+        self.input_desc.setPlaceholderText("DescripciÃ³n del mod grÃ¡fico...")
         self.input_desc.setMaximumHeight(80)
-        form.addRow("Descripción:", self.input_desc)
+        form.addRow("DescripciÃ³n:", self.input_desc)
 
         self.input_download_url = QLineEdit()
         self.input_download_url.setPlaceholderText("https://drive.google.com/uc?export=download&id=...")
@@ -134,7 +134,7 @@ class UploadModDialog(QDialog):
         layout.addLayout(form)
 
         # Future mod creation hint for admins
-        self.future_mod_hint = QLabel("💡 También puedes crear un mod futuro sin archivo para publicarlo antes de subir el .scs")
+        self.future_mod_hint = QLabel("ðŸ’¡ TambiÃ©n puedes crear un mod futuro sin archivo para publicarlo antes de subir el .scs")
         self.future_mod_hint.setStyleSheet(f"font-size: 11px; color: {COLOR_AMBER};")
         self.future_mod_hint.setWordWrap(True)
         layout.addWidget(self.future_mod_hint)
@@ -143,7 +143,7 @@ class UploadModDialog(QDialog):
         btn_row = QHBoxLayout()
         btn_row.addStretch()
 
-        self.btn_create_future = QPushButton("🔮 Crear Mod Futuro")
+        self.btn_create_future = QPushButton("ðŸ”® Crear Mod Futuro")
         self.btn_create_future.setProperty("class", "BtnSecondary")
         self.btn_create_future.clicked.connect(self.create_future_mod)
         btn_row.addWidget(self.btn_create_future)
@@ -153,7 +153,7 @@ class UploadModDialog(QDialog):
         btn_cancel.clicked.connect(self.reject)
         btn_row.addWidget(btn_cancel)
 
-        btn_upload = QPushButton("📤 Subir Mod")
+        btn_upload = QPushButton("ðŸ“¤ Subir Mod")
         btn_upload.setProperty("class", "BtnPrimary")
         btn_upload.clicked.connect(self.do_upload)
         btn_row.addWidget(btn_upload)
@@ -162,16 +162,16 @@ class UploadModDialog(QDialog):
 
     def browse_file(self):
         filepath, _ = QFileDialog.getOpenFileName(
-            self, "Seleccionar Mod Gráfico", "", "Mods (*.scs *.zip);;Todos los archivos (*.*)"
+            self, "Seleccionar Mod GrÃ¡fico", "", "Mods (*.scs *.zip);;Todos los archivos (*.*)"
         )
         if filepath:
             self.filepath = filepath
-            self.lbl_file.setText(f"📎 {os.path.basename(filepath)}")
+            self.lbl_file.setText(f"ðŸ“Ž {os.path.basename(filepath)}")
 
     def create_future_mod(self):
         """Create a future mod without an actual file."""
         if not self.input_title.text().strip():
-            QMessageBox.warning(self, "Error", "El título es obligatorio.")
+            QMessageBox.warning(self, "Error", "El tÃ­tulo es obligatorio.")
             return
         if not self.input_version.text().strip():
             self.input_version.setText("1.0.0")
@@ -184,7 +184,7 @@ class UploadModDialog(QDialog):
             version=self.input_version.text().strip(),
             author=self.input_author.text().strip(),
             compatibility=self.input_compat.text().strip() or "1.50+",
-            description=self.input_desc.toPlainText().strip() or "Mod futuro de Gráficos VictorTrucks.",
+            description=self.input_desc.toPlainText().strip() or "Mod futuro de GrÃ¡ficos VictorTrucks.",
             size_gb=0.0,
             download_url=download_url
         )
@@ -207,7 +207,7 @@ class UploadModDialog(QDialog):
             self.create_future_mod()
             return
         if not self.input_title.text().strip():
-            QMessageBox.warning(self, "Error", "El título es obligatorio.")
+            QMessageBox.warning(self, "Error", "El tÃ­tulo es obligatorio.")
             return
         if not self.input_version.text().strip():
             self.input_version.setText("1.0.0")
@@ -217,7 +217,7 @@ class UploadModDialog(QDialog):
             self.input_compat.setText("1.50 - 1.59")
 
         # Show progress
-        self.lbl_file.setText("⏳ Subiendo... (esto puede tardar)")
+        self.lbl_file.setText("â³ Subiendo... (esto puede tardar)")
         QApplication_processEvents()
 
         success, message = self.api_client.upload_local_mod(
@@ -234,7 +234,7 @@ class UploadModDialog(QDialog):
             self.accept()
         else:
             QMessageBox.critical(self, "Error", message)
-            self.lbl_file.setText(f"📎 {os.path.basename(self.filepath)}")
+            self.lbl_file.setText(f"ðŸ“Ž {os.path.basename(self.filepath)}")
 
 
 def QApplication_processEvents():
@@ -248,7 +248,7 @@ class AdminSettingsDialog(QDialog):
     def __init__(self, api_client, parent=None):
         super().__init__(parent)
         self.api_client = api_client
-        self.setWindowTitle("Configuración ADMIN - GRÁFICOS VICTORTRUCKS")
+        self.setWindowTitle("ConfiguraciÃ³n ADMIN - GRÃFICOS VICTORTRUCKS")
         self.resize(560, 520)
         self.setMinimumSize(480, 480)
         self.setStyleSheet(MAIN_QSS)
@@ -265,7 +265,7 @@ class AdminSettingsDialog(QDialog):
         title.setAlignment(Qt.AlignCenter)
         layout.addWidget(title)
 
-        desc = QLabel("Cambia tu usuario y contraseña. El rol ADMIN siempre se mantiene.")
+        desc = QLabel("Cambia tu usuario y contraseÃ±a. El rol ADMIN siempre se mantiene.")
         desc.setStyleSheet(f"font-size: 12px; color: {COLOR_TEXT_SECONDARY};")
         desc.setWordWrap(True)
         desc.setAlignment(Qt.AlignCenter)
@@ -301,7 +301,7 @@ class AdminSettingsDialog(QDialog):
 
         # Current password field
         self.input_current_password = QLineEdit()
-        self.input_current_password.setPlaceholderText("Contraseña actual")
+        self.input_current_password.setPlaceholderText("ContraseÃ±a actual")
         self.input_current_password.setEchoMode(QLineEdit.Password)
         self.input_current_password.setStyleSheet(f"""
             background: rgba(255, 255, 255, 0.06);
@@ -316,7 +316,7 @@ class AdminSettingsDialog(QDialog):
 
         # New password field
         self.input_new_password = QLineEdit()
-        self.input_new_password.setPlaceholderText("Nueva contraseña (mín. 6 caracteres)")
+        self.input_new_password.setPlaceholderText("Nueva contraseÃ±a (mÃ­n. 6 caracteres)")
         self.input_new_password.setEchoMode(QLineEdit.Password)
         self.input_new_password.setStyleSheet(f"""
             background: rgba(255, 255, 255, 0.06);
@@ -331,7 +331,7 @@ class AdminSettingsDialog(QDialog):
 
         # Confirm password field
         self.input_confirm_password = QLineEdit()
-        self.input_confirm_password.setPlaceholderText("Confirmar nueva contraseña")
+        self.input_confirm_password.setPlaceholderText("Confirmar nueva contraseÃ±a")
         self.input_confirm_password.setEchoMode(QLineEdit.Password)
         self.input_confirm_password.setStyleSheet(f"""
             background: rgba(255, 255, 255, 0.06);
@@ -346,7 +346,7 @@ class AdminSettingsDialog(QDialog):
         layout.addWidget(self.input_confirm_password)
 
         # Show password
-        self.chk_show = QCheckBox("Mostrar contraseñas")
+        self.chk_show = QCheckBox("Mostrar contraseÃ±as")
         self.chk_show.setStyleSheet(f"""
             QCheckBox {{
                 color: {COLOR_TEXT_SECONDARY};
@@ -389,7 +389,7 @@ class AdminSettingsDialog(QDialog):
         btn_cancel.clicked.connect(self.reject)
         btn_row.addWidget(btn_cancel)
 
-        btn_save = QPushButton("💾 Guardar cambios")
+        btn_save = QPushButton("ðŸ’¾ Guardar cambios")
         btn_save.setProperty("class", "BtnPrimary")
         btn_save.setStyleSheet(
             f"background: {NEON_GRAD}; color: #111111;"
@@ -413,19 +413,19 @@ class AdminSettingsDialog(QDialog):
         confirm_password = self.input_confirm_password.text().strip()
 
         if not current_password:
-            QMessageBox.warning(self, "Error", "Debes ingresar tu contraseña actual.")
+            QMessageBox.warning(self, "Error", "Debes ingresar tu contraseÃ±a actual.")
             return
 
         # Validate new password if provided
         if new_password and len(new_password) < 6:
-            QMessageBox.warning(self, "Error", "La nueva contraseña debe tener al menos 6 caracteres.")
+            QMessageBox.warning(self, "Error", "La nueva contraseÃ±a debe tener al menos 6 caracteres.")
             return
         if new_password and new_password != confirm_password:
-            QMessageBox.warning(self, "Error", "Las contraseñas nuevas no coinciden.")
+            QMessageBox.warning(self, "Error", "Las contraseÃ±as nuevas no coinciden.")
             return
 
         if not new_username and not new_password:
-            QMessageBox.warning(self, "Error", "Ingresa un nuevo usuario o contraseña.")
+            QMessageBox.warning(self, "Error", "Ingresa un nuevo usuario o contraseÃ±a.")
             return
 
         self.status_label.setText("Procesando...")
@@ -475,7 +475,7 @@ class AdminSettingsDialog(QDialog):
                 self.api_client.username = new_username
             # Keep admin role
             self.api_client.user_role = "admin"
-            QMessageBox.information(self, "Éxito", "Configuración de ADMIN actualizada correctamente.")
+            QMessageBox.information(self, "Ã‰xito", "ConfiguraciÃ³n de ADMIN actualizada correctamente.")
             self.accept()
         else:
             QMessageBox.critical(self, "Error", message)
@@ -496,7 +496,7 @@ class AdminUsersDialog(QDialog):
         # without changing the dialog's layout.
         self.refresh_timer.setInterval(1000)
         self.refresh_timer.timeout.connect(self.refresh_users)
-        self.setWindowTitle("Usuarios y permisos - GRÁFICOS VICTORTRUCKS")
+        self.setWindowTitle("Usuarios y permisos - GRÃFICOS VICTORTRUCKS")
         self.resize(980, 700)
         self.setMinimumSize(720, 560)
         self.setStyleSheet(MAIN_QSS)
@@ -509,7 +509,7 @@ class AdminUsersDialog(QDialog):
         layout.setContentsMargins(24, 24, 24, 24)
         layout.setSpacing(16)
 
-        title = QLabel("👥 USUARIOS Y PERMISOS")
+        title = QLabel("ðŸ‘¥ USUARIOS Y PERMISOS")
         title.setStyleSheet(f"font-size: 22px; font-weight: 900; color: {COLOR_ACCENT}; letter-spacing: 1px;")
         layout.addWidget(title)
 
@@ -530,7 +530,7 @@ class AdminUsersDialog(QDialog):
         top_btn_row = QHBoxLayout()
 
         # ADMIN settings button
-        self.btn_admin_settings = QPushButton("👑 Configuración ADMIN")
+        self.btn_admin_settings = QPushButton("ðŸ‘‘ ConfiguraciÃ³n ADMIN")
         self.btn_admin_settings.setProperty("class", "BtnSecondary")
         self.btn_admin_settings.setStyleSheet(
             f"background: {NEON_GRAD}; color: #111111; border: none;"
@@ -544,7 +544,7 @@ class AdminUsersDialog(QDialog):
 
         search_row = QHBoxLayout()
         self.search_input = QLineEdit()
-        self.search_input.setPlaceholderText("🔍 Buscar usuario por nombre...")
+        self.search_input.setPlaceholderText("ðŸ” Buscar usuario por nombre...")
         self.search_input.setStyleSheet(f"""
             background: rgba(255, 255, 255, 0.06);
             color: {COLOR_TEXT_PRIMARY};
@@ -556,12 +556,12 @@ class AdminUsersDialog(QDialog):
         self.search_input.textChanged.connect(self.filter_users)
         search_row.addWidget(self.search_input, 1)
 
-        self.btn_toggle_status = QPushButton("🔄 Activar / Desactivar")
+        self.btn_toggle_status = QPushButton("ðŸ”„ Activar / Desactivar")
         self.btn_toggle_status.setProperty("class", "BtnSecondary")
         self.btn_toggle_status.clicked.connect(self.toggle_user_status)
         search_row.addWidget(self.btn_toggle_status)
 
-        self.btn_reset_password = QPushButton("🔑 Restablecer contraseña")
+        self.btn_reset_password = QPushButton("ðŸ”‘ Restablecer contraseÃ±a")
         self.btn_reset_password.setProperty("class", "BtnSecondary")
         self.btn_reset_password.clicked.connect(self.reset_user_password)
         search_row.addWidget(self.btn_reset_password)
@@ -679,10 +679,10 @@ class AdminUsersDialog(QDialog):
         for user in self.users:
             if query and query not in user.get("username", "").lower():
                 continue
-            role_text = "👑 ADMIN" if user.get('role') == 'admin' else "👤 USUARIO"
-            status_text = "● ACTIVO" if user.get('is_active') else "✗ INACTIVO"
+            role_text = "ðŸ‘‘ ADMIN" if user.get('role') == 'admin' else "ðŸ‘¤ USUARIO"
+            status_text = "â— ACTIVO" if user.get('is_active') else "âœ— INACTIVO"
             status_color = COLOR_GREEN if user.get('is_active') else COLOR_RED
-            item = QListWidgetItem(f"{user.get('username')}  •  {role_text}  •  {status_text}")
+            item = QListWidgetItem(f"{user.get('username')}  â€¢  {role_text}  â€¢  {status_text}")
             item.setData(Qt.UserRole, user.get("id"))
             # Set foreground for status
             if not user.get('is_active'):
@@ -756,7 +756,7 @@ class AdminUsersDialog(QDialog):
             mod_id_key = str(mod.get('id', ''))
             is_acquired = bool(self.access_map.get(mod_id_key, False))
             status = "ADQUIRIDO" if is_acquired else "NO ADQUIRIDO"
-            status_icon = "✅" if is_acquired else "🔒"
+            status_icon = "âœ…" if is_acquired else "ðŸ”’"
             
             # Create an HBox with status label and toggle button
             row = QWidget()
@@ -806,7 +806,7 @@ class AdminUsersDialog(QDialog):
             self.load_user_access(self.selected_user_id)
             # Show confirmation
             self.info_label.setText(
-                f"{message} — {'✅ Acceso ACTIVADO' if is_granted else '🔒 Acceso DESACTIVADO'}"
+                f"{message} â€” {'âœ… Acceso ACTIVADO' if is_granted else 'ðŸ”’ Acceso DESACTIVADO'}"
             )
         else:
             QMessageBox.warning(self, "Error", f"No se pudo actualizar el acceso: {message}")
@@ -835,19 +835,19 @@ class AdminUsersDialog(QDialog):
         if not selected_user:
             return
         if selected_user.get("role") == "admin":
-            QMessageBox.information(self, "Información", "Usa 'Configuración ADMIN' para cambiar la contraseña del administrador.")
+            QMessageBox.information(self, "InformaciÃ³n", "Usa 'ConfiguraciÃ³n ADMIN' para cambiar la contraseÃ±a del administrador.")
             return
 
         from PySide6.QtWidgets import QInputDialog
         new_password, ok = QInputDialog.getText(
-            self, "Restablecer contraseña",
-            f"Nueva contraseña para {selected_user.get('username')} (mín. 6 caracteres):",
+            self, "Restablecer contraseÃ±a",
+            f"Nueva contraseÃ±a para {selected_user.get('username')} (mÃ­n. 6 caracteres):",
             QLineEdit.Password
         )
         if not ok or not new_password.strip():
             return
         if len(new_password.strip()) < 6:
-            QMessageBox.warning(self, "Error", "La contraseña debe tener al menos 6 caracteres.")
+            QMessageBox.warning(self, "Error", "La contraseÃ±a debe tener al menos 6 caracteres.")
             return
 
         success, message = self.api_client.update_admin_user(
@@ -855,7 +855,7 @@ class AdminUsersDialog(QDialog):
             password=new_password.strip()
         )
         if success:
-            QMessageBox.information(self, "Éxito", message)
+            QMessageBox.information(self, "Ã‰xito", message)
         else:
             QMessageBox.warning(self, "Error", message)
 
@@ -886,7 +886,7 @@ class MainWindow(QMainWindow):
         # Reuse the API client already resolved by the launcher (client/main.py):
         # it points at the CENTRAL server in CLIENT mode, or at the embedded
         # server in SERVER mode. This guarantees that user registration, login
-        # and admin queries ALWAYS hit the single central server — never a stale
+        # and admin queries ALWAYS hit the single central server â€” never a stale
         # localhost/default URL read from config, which would otherwise make
         # this PC spin up its own local user DB (unsynced across PCs).
         self.api_client = api_client if api_client is not None else APIClient()
@@ -960,14 +960,14 @@ class MainWindow(QMainWindow):
             logo_inner_layout.addWidget(self.logo_img_lbl)
             brand_layout.addWidget(logo_container)
         else:
-            brand_title = QLabel("🚛 Launcher Victor Trucks")
+            brand_title = QLabel("ðŸš› Launcher Victor Trucks")
             brand_title.setStyleSheet(
                 f"font-size: 15px; font-weight: 900; color: {COLOR_ACCENT}; font-family: 'Segoe UI'; letter-spacing: 1px;"
             )
             brand_title.setAlignment(Qt.AlignCenter)
             brand_layout.addWidget(brand_title)
 
-        # Línea tecnológica luminosa bajo el logo
+        # LÃ­nea tecnolÃ³gica luminosa bajo el logo
         tech_line = QFrame()
         tech_line.setFixedHeight(2)
         tech_line.setStyleSheet(f"""
@@ -983,8 +983,8 @@ class MainWindow(QMainWindow):
 
         sidebar_layout.addSpacing(16)
 
-        # Section label - ÚNICA SECCIÓN with HUD styling
-        section_label = QLabel("🚛 Gráficos Generales")
+        # Section label - ÃšNICA SECCIÃ“N with HUD styling
+        section_label = QLabel("ðŸš› GrÃ¡ficos Generales")
         section_label.setStyleSheet(
             f"color: {COLOR_AMBER}; font-size: 11px; font-weight: 800;"
             "letter-spacing: 2px; margin-left: 8px; padding: 4px 0;"
@@ -992,7 +992,7 @@ class MainWindow(QMainWindow):
         sidebar_layout.addWidget(section_label)
 
         # UPDATE badge pill showing available updates with HUD styling
-        self.updates_badge = QLabel("🔄 Verificando actualizaciones...")
+        self.updates_badge = QLabel("ðŸ”„ Verificando actualizaciones...")
         self.updates_badge.setStyleSheet(
             f"background: {GLASS_BG};"
             f"color: {COLOR_TEXT_SECONDARY};"
@@ -1018,25 +1018,25 @@ class MainWindow(QMainWindow):
         stats_layout.setContentsMargins(16, 16, 16, 16)
         stats_layout.setSpacing(8)
 
-        stats_title = QLabel("ESTADO DEL CAMIÓN")
+        stats_title = QLabel("ESTADO DEL CAMIÃ“N")
         stats_title.setStyleSheet(
             f"color: {COLOR_AMBER}; font-size: 11px; font-weight: 800; letter-spacing: 1px;"
         )
         stats_layout.addWidget(stats_title)
 
-        self.stats_installed_lbl = QLabel("📦 Mods instalados: 0")
+        self.stats_installed_lbl = QLabel("ðŸ“¦ Mods instalados: 0")
         self.stats_installed_lbl.setStyleSheet(
             f"color: {COLOR_TEXT_PRIMARY}; font-size: 13px; font-weight: 600;"
         )
         stats_layout.addWidget(self.stats_installed_lbl)
 
-        self.stats_updates_lbl = QLabel("⬆️ Actualizaciones: 0")
+        self.stats_updates_lbl = QLabel("â¬†ï¸ Actualizaciones: 0")
         self.stats_updates_lbl.setStyleSheet(
             f"color: {COLOR_AMBER}; font-size: 13px; font-weight: 600;"
         )
         stats_layout.addWidget(self.stats_updates_lbl)
 
-        self.stats_disk_lbl = QLabel("💾 Espacio usado: 0 GB")
+        self.stats_disk_lbl = QLabel("ðŸ’¾ Espacio usado: 0 GB")
         self.stats_disk_lbl.setStyleSheet(
             f"color: {COLOR_TEXT_SECONDARY}; font-size: 13px; font-weight: 600;"
         )
@@ -1057,13 +1057,13 @@ class MainWindow(QMainWindow):
         user_layout = QVBoxLayout(user_card)
         user_layout.setContentsMargins(12, 12, 12, 12)
 
-        self.user_lbl = QLabel("👤 Invitado (Sin Sesión)")
+        self.user_lbl = QLabel("ðŸ‘¤ Invitado (Sin SesiÃ³n)")
         self.user_lbl.setStyleSheet(
             f"font-size: 12px; font-weight: 700; color: {COLOR_TEXT_PRIMARY};"
         )
         user_layout.addWidget(self.user_lbl)
 
-        self.btn_auth = QPushButton("Iniciar Sesión / Registro")
+        self.btn_auth = QPushButton("Iniciar SesiÃ³n / Registro")
         self.btn_auth.setProperty("class", "BtnPrimary")
         self.btn_auth.clicked.connect(self.open_auth_dialog)
         user_layout.addWidget(self.btn_auth)
@@ -1092,27 +1092,27 @@ class MainWindow(QMainWindow):
         top_layout.setContentsMargins(24, 0, 24, 0)
 
         # ATS path + status indicator
-        self.status_ats_lbl = QLabel(f"📁 {self.ats_mod_dir}")
+        self.status_ats_lbl = QLabel(f"ðŸ“ {self.ats_mod_dir}")
         self.status_ats_lbl.setStyleSheet(f"color: {COLOR_TEXT_SECONDARY}; font-size: 12px;")
         top_layout.addWidget(self.status_ats_lbl)
 
         top_layout.addStretch()
 
         # Server connectivity indicator
-        self.server_status_lbl = QLabel("● Conectando...")
+        self.server_status_lbl = QLabel("â— Conectando...")
         self.server_status_lbl.setStyleSheet(
             f"color: {COLOR_TEXT_SECONDARY}; font-weight: 700; font-size: 12px; margin-right: 16px;"
         )
         top_layout.addWidget(self.server_status_lbl)
 
         # Active downloads badge
-        self.active_dl_badge = QLabel("⚡ 0 descargas activas")
+        self.active_dl_badge = QLabel("âš¡ 0 descargas activas")
         self.active_dl_badge.setStyleSheet(
             f"color: {COLOR_ACCENT}; font-weight: bold; font-size: 12px; margin-right: 16px;"
         )
         top_layout.addWidget(self.active_dl_badge)
 
-        self.btn_upload = QPushButton("📤 Subir Mod")
+        self.btn_upload = QPushButton("ðŸ“¤ Subir Mod")
         self.btn_upload.setStyleSheet(
             f"background: {NEON_GRAD}; color: white;"
             f"border: none;"
@@ -1120,12 +1120,12 @@ class MainWindow(QMainWindow):
             f"border-bottom-right-radius: 0px; border-bottom-left-radius: 6px;"
             "font-size: 12px; font-weight: 700; padding: 6px 14px; margin-right: 8px;"
         )
-        self.btn_upload.setToolTip("Subir un archivo .scs o .zip desde tu PC al catálogo")
+        self.btn_upload.setToolTip("Subir un archivo .scs o .zip desde tu PC al catÃ¡logo")
         self.btn_upload.clicked.connect(self.open_upload_dialog)
         self.btn_upload.setVisible(self.api_client.is_admin())
         top_layout.addWidget(self.btn_upload)
 
-        self.btn_admin_users = QPushButton("👥 Usuarios")
+        self.btn_admin_users = QPushButton("ðŸ‘¥ Usuarios")
         self.btn_admin_users.setStyleSheet(
             f"background: {GLASS_BG}; color: {COLOR_TEXT_PRIMARY};"
             f"border: 1px solid {GLASS_BORDER};"
@@ -1133,13 +1133,13 @@ class MainWindow(QMainWindow):
             f"border-bottom-right-radius: 0px; border-bottom-left-radius: 6px;"
             "font-size: 12px; font-weight: 700; padding: 6px 14px; margin-right: 8px;"
         )
-        self.btn_admin_users.setToolTip("Panel de administración de usuarios y permisos")
+        self.btn_admin_users.setToolTip("Panel de administraciÃ³n de usuarios y permisos")
         self.btn_admin_users.clicked.connect(self.open_admin_users_dialog)
         self.btn_admin_users.setVisible(self.api_client.is_admin())
         top_layout.addWidget(self.btn_admin_users)
 
         # Settings button (gear) - HUD style (ADMIN ONLY)
-        self.btn_settings = QPushButton("⚙️")
+        self.btn_settings = QPushButton("âš™ï¸")
         self.btn_settings.setStyleSheet(
             f"background: {GLASS_BG}; color: {COLOR_TEXT_PRIMARY};"
             f"border: 1px solid {GLASS_BORDER};"
@@ -1147,24 +1147,24 @@ class MainWindow(QMainWindow):
             f"border-bottom-right-radius: 0px; border-bottom-left-radius: 6px;"
             "font-size: 16px; padding: 4px 10px;"
         )
-        self.btn_settings.setToolTip("Configuración del Launcher (solo administradores)")
+        self.btn_settings.setToolTip("ConfiguraciÃ³n del Launcher (solo administradores)")
         self.btn_settings.clicked.connect(self.open_settings_view)
         self.btn_settings.setVisible(self.api_client.is_admin())
         top_layout.addWidget(self.btn_settings)
 
         main_content_layout.addWidget(top_bar)
 
-        # Views Stack (catálogo principal + settings como overlay)
+        # Views Stack (catÃ¡logo principal + settings como overlay)
         self.stack = QStackedWidget()
 
-        # 1. Main Catalog View (única sección principal)
+        # 1. Main Catalog View (Ãºnica secciÃ³n principal)
         self.catalog_view = CatalogView(self.api_client, self.installed_registry)
         self.catalog_view.download_requested.connect(self.start_download)
         self.catalog_view.settings_requested.connect(self.open_settings_view)
         self.catalog_view.downloads_requested.connect(self.open_downloads_view)
         self.stack.addWidget(self.catalog_view)
 
-        # 2. Downloads Management View (sub-vista del catálogo)
+        # 2. Downloads Management View (sub-vista del catÃ¡logo)
         self.downloads_view = DownloadsView()
         self.downloads_view.back_requested.connect(self.back_to_catalog)
         self.stack.addWidget(self.downloads_view)
@@ -1209,9 +1209,9 @@ class MainWindow(QMainWindow):
     def update_user_ui(self):
         """Update profile box and admin features depending on auth state."""
         if self.api_client.is_authenticated():
-            role_badge = "👑 Administrador" if self.api_client.is_admin() else "👤 Usuario"
+            role_badge = "ðŸ‘‘ Administrador" if self.api_client.is_admin() else "ðŸ‘¤ Usuario"
             self.user_lbl.setText(f"{role_badge}\n{self.api_client.username}")
-            self.btn_auth.setText("Cerrar Sesión")
+            self.btn_auth.setText("Cerrar SesiÃ³n")
             self.btn_auth.setStyleSheet(
                 "QPushButton { color: #FFFFFF; font-weight: bold; background-color: #2A2D34; border: 1px solid #444444; border-radius: 6px; padding: 8px 14px; } "
                 "QPushButton:hover { background-color: #3A3D44; color: #FFFFFF; }"
@@ -1225,8 +1225,8 @@ class MainWindow(QMainWindow):
             self.btn_admin_users.setVisible(self.api_client.is_admin())
             self.btn_settings.setVisible(self.api_client.is_admin())
         else:
-            self.user_lbl.setText("👤 Invitado (Sin Sesión)")
-            self.btn_auth.setText("Iniciar Sesión / Registro")
+            self.user_lbl.setText("ðŸ‘¤ Invitado (Sin SesiÃ³n)")
+            self.btn_auth.setText("Iniciar SesiÃ³n / Registro")
             self.btn_auth.setStyleSheet("")
             try:
                 self.btn_auth.clicked.disconnect()
@@ -1315,7 +1315,7 @@ class MainWindow(QMainWindow):
         if mod_id in self.active_workers:
             return
 
-        raw_url = mod_data.get('download_url') or mod_data.get('cdn_url') or f"/api/mods/{mod_id}/download"
+        raw_url = mod_data.get('cdn_url') or mod_data.get('download_url') or f"/api/mods/{mod_id}/download"
         if raw_url.startswith("http://") or raw_url.startswith("https://"):
             download_url = raw_url
         else:
@@ -1411,8 +1411,8 @@ class MainWindow(QMainWindow):
     # ------------------------------------------------------------------
     def uninstall_mod(self, mod_id):
         confirm = QMessageBox.question(
-            self, "Confirmar Desinstalación",
-            "¿Estás seguro de que deseas eliminar este mod gráfico de ATS?"
+            self, "Confirmar DesinstalaciÃ³n",
+            "Â¿EstÃ¡s seguro de que deseas eliminar este mod grÃ¡fico de ATS?"
         )
         if confirm == QMessageBox.StandardButton.Yes:
             ModInstaller.uninstall_mod(mod_id, self.ats_mod_dir)
@@ -1424,10 +1424,10 @@ class MainWindow(QMainWindow):
 
         # Update stats panel
         count = len(self.installed_registry)
-        self.stats_installed_lbl.setText(f"📦 Mods instalados: {count}")
+        self.stats_installed_lbl.setText(f"ðŸ“¦ Mods instalados: {count}")
 
         disk_usage = ModInstaller.get_disk_usage(self.ats_mod_dir)
-        self.stats_disk_lbl.setText(f"💾 Espacio usado: {disk_usage / (1024**3):.1f} GB")
+        self.stats_disk_lbl.setText(f"ðŸ’¾ Espacio usado: {disk_usage / (1024**3):.1f} GB")
 
     # ------------------------------------------------------------------
     # Update checking (runs in background thread)
@@ -1444,17 +1444,17 @@ class MainWindow(QMainWindow):
     def _on_updates_checked(self, success, mods, categories):
         """Handle results from background update check."""
         if not success:
-            self.updates_badge.setText("🔴 Sin conexión (Reconectando...)")
+            self.updates_badge.setText("ðŸ”´ Sin conexiÃ³n (Reconectando...)")
             self.updates_badge.setStyleSheet(
                 f"background: {GLASS_BG}; color: #EF4444;"
                 f"border: 1px solid #EF4444; border-radius: 12px;"
                 "padding: 8px 14px; font-size: 12px; font-weight: 600;"
             )
-            self.server_status_lbl.setText("🔴 API Disconectada (Reconectando...)")
+            self.server_status_lbl.setText("ðŸ”´ API Disconectada (Reconectando...)")
             self.server_status_lbl.setStyleSheet("color: #EF4444; font-weight: 700; font-size: 12px; margin-right: 16px;")
             return
 
-        self.server_status_lbl.setText("🟢 API HTTPS Central (Conectada)")
+        self.server_status_lbl.setText("ðŸŸ¢ API HTTPS Central (Conectada)")
         self.server_status_lbl.setStyleSheet(
             f"color: {COLOR_GREEN}; font-weight: 700; font-size: 12px; margin-right: 16px;"
         )
@@ -1463,21 +1463,21 @@ class MainWindow(QMainWindow):
         update_count = len(updates)
 
         if update_count > 0:
-            self.updates_badge.setText(f"⬆️ {update_count} actualización(es) disponible(s)")
+            self.updates_badge.setText(f"â¬†ï¸ {update_count} actualizaciÃ³n(es) disponible(s)")
             self.updates_badge.setStyleSheet(
                 f"background: {GLASS_BG}; color: {COLOR_AMBER};"
                 f"border: 1px solid {COLOR_AMBER}; border-radius: 12px;"
                 "padding: 8px 14px; font-size: 12px; font-weight: 700;"
             )
-            self.stats_updates_lbl.setText(f"⬆️ Actualizaciones: {update_count}")
+            self.stats_updates_lbl.setText(f"â¬†ï¸ Actualizaciones: {update_count}")
         else:
-            self.updates_badge.setText("✓ Todos tus mods están al día")
+            self.updates_badge.setText("âœ“ Todos tus mods estÃ¡n al dÃ­a")
             self.updates_badge.setStyleSheet(
                 f"background: {GLASS_BG}; color: {COLOR_GREEN};"
                 f"border: 1px solid {COLOR_GREEN}; border-radius: 12px;"
                 "padding: 8px 14px; font-size: 12px; font-weight: 600;"
             )
-            self.stats_updates_lbl.setText(f"⬆️ Actualizaciones: 0")
+            self.stats_updates_lbl.setText(f"â¬†ï¸ Actualizaciones: 0")
 
         self.catalog_view.set_server_mods(mods)
 
@@ -1491,11 +1491,11 @@ class MainWindow(QMainWindow):
         lines = []
         for upd in updates[:5]:
             lines.append(
-                f"• {upd['available']['title']}: v{upd['current_version']} → v{upd['new_version']}"
+                f"â€¢ {upd['available']['title']}: v{upd['current_version']} â†’ v{upd['new_version']}"
             )
         if len(updates) > 5:
-            lines.append(f"... y {len(updates) - 5} más")
-        msg.setText("Nuevas versiones disponibles para tus mods gráficos:\n\n" + "\n".join(lines))
+            lines.append(f"... y {len(updates) - 5} mÃ¡s")
+        msg.setText("Nuevas versiones disponibles para tus mods grÃ¡ficos:\n\n" + "\n".join(lines))
         msg.exec()
 
     # ------------------------------------------------------------------
@@ -1503,7 +1503,7 @@ class MainWindow(QMainWindow):
     # ------------------------------------------------------------------
     def on_ats_path_changed(self, new_path):
         self.ats_mod_dir = ATSDetector.save_ats_mod_directory(new_path)
-        self.status_ats_lbl.setText(f"📁 {self.ats_mod_dir}")
+        self.status_ats_lbl.setText(f"ðŸ“ {self.ats_mod_dir}")
         self.refresh_installed_views()
 
     def on_api_url_changed(self, new_url):
@@ -1516,7 +1516,7 @@ class MainWindow(QMainWindow):
     # ------------------------------------------------------------------
     def update_active_dl_count(self):
         count = len(self.active_workers)
-        self.active_dl_badge.setText(f"⚡ {count} descargas activas")
+        self.active_dl_badge.setText(f"âš¡ {count} descargas activas")
 
     def update_downloads_badge(self):
         pass
@@ -1583,3 +1583,4 @@ class MainWindow(QMainWindow):
         if hasattr(self, 'catalog_view'):
             self.catalog_view.apply_responsive_layout()
             self.catalog_view.render_grid()
+
