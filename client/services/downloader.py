@@ -18,7 +18,7 @@ class DownloadWorker(QThread):
     # 1 MB chunks for optimal throughput on large files (10GB+)
     CHUNK_SIZE = 1024 * 1024
     # Minimum interval between progress signal emissions (ms)
-    PROGRESS_INTERVAL = 0.5
+    PROGRESS_INTERVAL = 0.1
 
     def __init__(self, mod_id, download_url, save_directory, expected_sha256, filename, total_size_bytes, auth_token=None):
         super().__init__()
@@ -150,7 +150,7 @@ class DownloadWorker(QThread):
                         elapsed_since_progress = now - last_progress_time
 
                         # Throttle progress signals to avoid UI overhead
-                        if elapsed_since_progress >= self.PROGRESS_INTERVAL:
+                        if elapsed_since_progress >= self.PROGRESS_INTERVAL or downloaded_bytes == len(chunk):
                             if elapsed_since_window > 0:
                                 speed_mbps = (speed_window_bytes / (1024 * 1024)) / elapsed_since_window
                             else:
